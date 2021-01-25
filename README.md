@@ -1,0 +1,1 @@
+# client_for_smart_agriculture_IOT_manager_system
