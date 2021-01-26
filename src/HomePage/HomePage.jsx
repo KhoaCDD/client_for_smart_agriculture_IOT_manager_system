@@ -360,12 +360,11 @@ class HomePage extends React.Component {
                         <table className="styled-table">
                             <thead>
                                 <tr>
-                                    <th>Device ID</th>
                                     <th>Device Name</th>
+                                    <th>On Board</th>
                                     <th>Device Type</th>
                                     <th>Status</th>                                    
                                     <th>Action</th>
-                                    <th>On/Off</th>
                                 </tr>
                             </thead>
                             <tbody>            
@@ -373,21 +372,31 @@ class HomePage extends React.Component {
                                     (typeof(devices) !== 'undefined' && devices.length !== 0 )?
                                     devices.map(item=> item && 
                                         <tr key = {item.deviceId}>
-                                            <td title = {item.deviceId}>{item.deviceId}</td>
                                             <td title = {item.deviceName}>{item.deviceName}</td>
+                                            <td title = {item.deviceId}>{item.deviceId}</td>
                                             <td title = {item.deviceType}>{item.deviceType}</td>
                                             <td title = {item.status}>{item.status}</td>
                                             
+                                            { item.deviceType === 'Sensor' ? 
                                             <td>
-                                                <input type="checkbox" id={"checkbox"+item.deviceId} checked ={this.state.displayDevice===item.id} onChange={()=>this.handleSelectDisplayConfirmBox(item)} disabled = {(item.status === "active")? "disabled" : ""}/>
+                                                <input type="checkbox" id={"checkbox"+item.deviceId} checked ={this.state.displayDevice===item.id} onChange={()=>this.handleSelectDisplayConfirmBox(item)} />
                                                 <label htmlFor={"checkbox"+item.deviceId}>Display data</label>
-                                            </td>
+                                            </td> : 
+                                            item.deviceType === 'Device' ? 
                                             <td>
                                                 <label className="switch">
                                                     <input type="checkbox" id={"slider"+item.deviceId} checked ={item.status !== "active"} onChange={()=>this.handleToggleButton(item)}/>
                                                     <span className="slider round"></span>
                                                 </label>
-                                            </td>
+                                            </td> : 
+                                            <td></td>
+                                            }
+                                            {/* { item.deviceType === 'Device' && <td>
+                                                <label className="switch">
+                                                    <input type="checkbox" id={"slider"+item.deviceId} checked ={item.status !== "active"} onChange={()=>this.handleToggleButton(item)}/>
+                                                    <span className="slider round"></span>
+                                                </label>
+                                            </td>} */}
                                         </tr>
 
                                     ):<tr><td>No Data</td></tr>
