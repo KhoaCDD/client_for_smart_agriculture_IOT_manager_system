@@ -353,8 +353,8 @@ class HomePage extends React.Component {
                     <div>
                         <div className="homepage-header-table">
                             <h3>List Device</h3>
-                            {this.state.temp?<h3>Current Temperature: {this.state.temp.data.data.T5}</h3>:<div></div>}
-                            {this.state.temp?<h3>Current Moisture: {this.state.temp.data.data.H5}</h3>:<div></div>}
+                            {this.state.temp?<h3>Current Temperature: {this.state.temp.data.data["T"+this.state.temp.data.deviceId]}</h3>:<div></div>}
+                            {this.state.temp?<h3>Current Moisture: {this.state.temp.data.data["H"+this.state.temp.data.deviceId]}</h3>:<div></div>}
                             <button className ="color-edited-button" onClick={this.handleShow}>Add Device</button>
                         </div>
                         <table className="styled-table">
